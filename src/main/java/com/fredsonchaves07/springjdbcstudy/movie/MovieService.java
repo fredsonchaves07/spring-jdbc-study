@@ -1,6 +1,6 @@
 package com.fredsonchaves07.springjdbcstudy.movie;
 
-import com.amigoscode.exception.NotFoundException;
+import com.fredsonchaves07.springjdbcstudy.exception.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
