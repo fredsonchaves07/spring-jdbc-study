@@ -1,6 +1,6 @@
 package com.fredsonchaves07.springjdbcstudy.movie;
 
-import com.amigoscode.actor.Actor;
+import com.fredsonchaves07.springjdbcstudy.actor.Actor;
 
 import java.time.LocalDate;
 import java.util.List;
