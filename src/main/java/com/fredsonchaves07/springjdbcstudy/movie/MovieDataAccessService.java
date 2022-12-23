@@ -1,5 +1,6 @@
 package com.fredsonchaves07.springjdbcstudy.movie;
 
+import com.fredsonchaves07.springjdbcstudy.exception.NotFoundException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -38,13 +39,31 @@ public class MovieDataAccessService implements MovieDao {
 
     @Override
     public int deleteMovie(int id) {
-        throw new UnsupportedOperationException("not implemented");
+        String sql = """
+            DELETE FROM movie
+            WHERE id = ?;   
+        """;
+        return jdbcTemplate.update(sql, id);
+    }
 
+    public int updateMovie(Movie movieUpdate, int id) {
+        Movie movie = selectMovieById(id)
+                .orElseThrow(() -> new NotFoundException(String.format("Movie with id %s not found", id)));
+        String sql = """
+            UPDATE movie
+            SET movie.name = name;   
+        """;
+        return 0;
     }
 
     @Override
     public Optional<Movie> selectMovieById(int id) {
-        throw new UnsupportedOperationException("not implemented");
+        String sql = """
+            SELECT id, name, release_date
+            FROM movie
+            WHERE id = ?;
+        """;
+        return jdbcTemplate.query(sql, new MovieRowMapper(), id).stream().findFirst();
     }
     
 }
